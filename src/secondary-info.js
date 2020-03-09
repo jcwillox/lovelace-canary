@@ -32,7 +32,6 @@ class SecondaryInfo extends HTMLElement {
       !this._isJinjaTemplate && typeof this._data.template !== "object";
 
     if (!this._isJinjaTemplate) {
-
       if (this._isOldTemplate) {
         if (!this._data.entity_ids) {
           this._data.entity_ids = oldExtractEntities(

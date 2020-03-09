@@ -3,12 +3,16 @@ import { hasOldTemplate } from "card-tools/src/old-templates";
 import { DEFAULT_SECONDARY_INFO } from "./const";
 import { hasTemplate } from "card-tools/src/templates";
 import { provideHass } from "card-tools/src/hass";
+import { extensionEnabled } from "./utils";
 
 customElements.whenDefined("hui-generic-entity-row").then(() => {
   const EntityRow = customElements.get("hui-generic-entity-row");
 
   EntityRow.prototype.firstUpdated = function() {
-    if (this.config.secondary_info) {
+    if (
+      this.config.secondary_info &&
+      extensionEnabled(this.config, "secondary_info")
+    ) {
       // ensure we don't overwrite the default secondary info behaviour.
       if (!DEFAULT_SECONDARY_INFO.includes(this.config.secondary_info)) {
         if (

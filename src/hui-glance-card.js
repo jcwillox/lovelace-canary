@@ -1,4 +1,5 @@
 import { fireEvent } from "card-tools/src/event.js";
+import { extensionEnabled } from "./utils";
 
 customElements.whenDefined("hui-glance-card").then(() => {
   const GlanceCard = customElements.get("hui-glance-card");
@@ -15,7 +16,7 @@ customElements.whenDefined("hui-glance-card").then(() => {
   };
 
   GlanceCard.prototype.firstUpdated = function() {
-    if (this._config.align) {
+    if (this._config.align && extensionEnabled(this._config, "align")) {
       this.shadowRoot.querySelector(
         ".entities"
       ).style.justifyContent = getAlignment(this._config.align);

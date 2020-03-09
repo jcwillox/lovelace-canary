@@ -4,7 +4,6 @@ import { hass } from "card-tools/src/hass";
 import { applyTheme } from "./styles";
 import { logVersion } from "./logging";
 import { registerCard } from "card-tools/src/editor";
-import { moduleEnabled } from "./utils";
 import { name, version } from "../package.json";
 // allow dynamic updating of secondary info.
 import "./secondary-info";
@@ -20,12 +19,6 @@ import "./hui-glance-card";
 import "./hui-warning";
 
 logVersion(name, version, "#fdd835", "#212121");
-
-if (moduleEnabled("no_card")) {
-  console.log("Module Enabled!");
-} else {
-  console.log("Module Disabled!");
-}
 
 class CanaryCard extends LitElement {
   static get properties() {

@@ -18,3 +18,13 @@ export function moduleEnabled(module) {
   }
   return true;
 }
+
+export function extensionEnabled(config, extension) {
+  let disableConfig = config.disable_canary;
+  // check: all extensions are enabled.
+  if (!disableConfig) return true;
+  // check: all extensions are disabled.
+  if (disableConfig === true) return false;
+  // check: specific extensions are disabled.
+  return !disableConfig.includes(extension);
+}

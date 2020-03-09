@@ -1,5 +1,6 @@
 import { fireEvent } from "card-tools/src/event";
 import { VERTICAL_STACK_IN_CARD_STYLE } from "./const";
+import { extensionEnabled } from "./utils";
 
 customElements.whenDefined("hui-vertical-stack-card").then(() => {
   const VerticalStack = customElements.get("hui-vertical-stack-card");
@@ -29,7 +30,10 @@ customElements.whenDefined("hui-vertical-stack-card").then(() => {
   };
 
   VerticalStack.prototype.firstUpdated = function() {
-    if (this._config.in_card === true) {
+    if (
+      this._config.in_card === true &&
+      extensionEnabled(this._config, "in_card")
+    ) {
       // remove space between cards in the stack.
       let styleElement = document.createElement("style");
       styleElement.innerHTML = VERTICAL_STACK_IN_CARD_STYLE;

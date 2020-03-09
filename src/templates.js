@@ -43,5 +43,3 @@ export function oldExtractEntities(template, variables = null) {
 
   return Array.from(new Set(entity_ids));
 }
-
-// light.bed_light [[ light.bed_light ]] [[ sensor.time.state ]] [[ light.kitchen_light.attributes.icon ]] [[ {user} ]] [[  if(light.bed_light == light.desk_leds, "The lights are on", "Its dark")  ]]
