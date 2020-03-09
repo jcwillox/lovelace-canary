@@ -14,7 +14,7 @@ Of course this is a custom card with no affiliation to the Home Assistant team s
 
 Much like [card-mod] Canary extends the default lovelace cards, so you don't need to actually define a `canary-card` for these options to work. The options are added to their respective cards as 'extensions'.
 
-Available Extensions:
+#### Available Extensions
   - [Generic Entity Rows](#generic-entity-rows)
     - [`secondary_info`](#secondary_info)
     - [`hide_warning`](#hide_warning)
@@ -44,6 +44,7 @@ There are three ways to template this, you can use a [secondary info object](#se
 | `postfix`   | `string` | Optional: string to append **after** the attribute/state.                         |
 
 ##### Jinja Templates
+
 _Note: that Jinja2 templates are slightly slower to load initially due to latency, as they are rendered in the backend, whereas the other two methods are rendered in the front end._
 
 Jinja templates have access to a few special variables. Those are:
@@ -89,8 +90,7 @@ entities:
   - entity: light.bedroom_light
     secondary_info: "The light is [[ {entity}.state ]]"
 
-
-    # Both Jinja and Thomas Lovén's templates support the use of `entity_ids` to specify which entities to monitor, 
+    # Both Jinja and Thomas Lovén's templates support the use of `entity_ids` to specify which entities to monitor,
     # this is only useful for templates that don't have an entity, e.g. `{{ now() }}`.
     entity_ids:
       - light.bedroom_light
@@ -181,6 +181,37 @@ Options for defining canary as an actual lovelace card.
 
 ---
 
+## Disabling Extensions
+
+Given the nature of this plugin there is the potential for it to interfere with other cards or entity rows, if they use same named options. With this in mind you can disable canary's access to a card or row using the `disable_canary` option.
+
+Note: this is only relevant if you are having compatibility issues, there is no performance improvement. Major compatability issues, such as with core lovelace should be reported as an issue.
+
+#### Example
+
+- If you wanted some other plugin to manage secondary info you could specifically disable canary on that row.
+
+```yaml
+type: entities
+entities:
+  - entity: sensor.fuel_price_average
+    name: Average
+    secondary_info: ""
+    # there are three ways to disable canary.
+
+    disable_canary: true  # boolean: disables all extensions.
+
+    disable_canary: secondary_info  # string: disable one extensions.
+
+    disable_canary:  # list: disable multiple extensions.
+      - secondary_info
+      - hide_warning
+```
+
+The list of available extensions can be found [here](#available-extensions).
+
+---
+
 ## Troubleshooting
 
 #### Vertical Stack
@@ -202,12 +233,6 @@ Other issues related to canary's extensions applying shortly after loading can u
 
 I'd like to recognise Thomas Lovén's influence on this card, his work on [card-tools] made the creation of this vastly quicker and easier. Reference to his and other people's lovelace cards is, at this point, like 90% of my knowledge on JavaScript and polymer UI. Code from Thomas Lovén's [card-mod] is the backbone of the extensions to lovelace and what gave me this idea in the first place.
 
-[secondaryinfo-entity-row]: https://github.com/custom-cards/secondaryinfo-entity-row
-[card-mod]: https://github.com/thomasloven/lovelace-card-mod
-[card-tools]: https://github.com/thomasloven/lovelace-card-tools
-[vertical-stack-in-card]: https://github.com/custom-cards/vertical-stack-in-card
-[mod-plugin-templates]: https://github.com/thomasloven/hass-config/wiki/Mod-plugin-templates
-
 ---
 
 ### Installation
@@ -217,3 +242,9 @@ resources:
   - url: /hacsfiles/lovelace-canary/canary.js
     type: module
 ```
+
+[secondaryinfo-entity-row]: https://github.com/custom-cards/secondaryinfo-entity-row
+[card-mod]: https://github.com/thomasloven/lovelace-card-mod
+[card-tools]: https://github.com/thomasloven/lovelace-card-tools
+[vertical-stack-in-card]: https://github.com/custom-cards/vertical-stack-in-card
+[mod-plugin-templates]: https://github.com/thomasloven/hass-config/wiki/Mod-plugin-templates
