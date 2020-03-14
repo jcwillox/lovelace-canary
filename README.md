@@ -2,13 +2,9 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 
-Canary adds many useful extensions to lovelace, such as [templating secondary info](#secondary-info), [stacking in-card](#in_card), and [more](#usage)!
+The idea behind Canary is to extend the functionality of Lovelace in a non-drastic way. This is done mainly, by adding extra configuration options (extensions) to pre-existing Lovelace elements.
 
-## Aim
-
-Similar to Chrome Canary, the idea behind this card is to implement features that don't make drastic changes to lovelace but add support for features that (by mine and popular opinion) would make (mostly) good additions to core Lovelace.
-
-Of course this is a custom card with no affiliation to the Home Assistant team so no guarantee any of these features will make it into Home Assistant. Really this is just a collection of useful features implemented in a way that tries to be as native as possible.
+This plugin could be thought of as almost a staging ground for features that if suitable could end up in core Lovelace, hence the name borrowed from Chrome Canary. It's unclear how well that statement will hold, it could also be called "Extensions".
 
 ## Usage
 
