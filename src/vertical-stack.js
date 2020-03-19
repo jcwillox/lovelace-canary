@@ -4,6 +4,7 @@ import { extensionEnabled } from "./utils";
 
 customElements.whenDefined("hui-vertical-stack-card").then(() => {
   const VerticalStack = customElements.get("hui-vertical-stack-card");
+  const firstUpdated = VerticalStack.prototype.firstUpdated;
 
   const applyStyles = async function(element) {
     // exit clause.
@@ -30,6 +31,7 @@ customElements.whenDefined("hui-vertical-stack-card").then(() => {
   };
 
   VerticalStack.prototype.firstUpdated = function() {
+    firstUpdated.call(this);
     if (
       this._config.in_card === true &&
       extensionEnabled(this._config, "in_card")

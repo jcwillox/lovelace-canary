@@ -3,7 +3,6 @@ import { createCard } from "card-tools/src/lovelace-element";
 import { hass } from "card-tools/src/hass";
 import { applyTheme } from "./styles";
 import { logVersion } from "./logging";
-import { registerCard } from "card-tools/src/editor";
 import { name, version } from "../package.json";
 // allow dynamic updating of secondary info.
 import "./secondary-info";

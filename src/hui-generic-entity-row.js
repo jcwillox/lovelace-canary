@@ -8,7 +8,10 @@ import { extensionEnabled } from "./utils";
 customElements.whenDefined("hui-generic-entity-row").then(() => {
   const EntityRow = customElements.get("hui-generic-entity-row");
 
+  const firstUpdated = EntityRow.prototype.firstUpdated;
+
   EntityRow.prototype.firstUpdated = function() {
+    firstUpdated.call(this);
     if (
       this.config.secondary_info &&
       extensionEnabled(this.config, "secondary_info")

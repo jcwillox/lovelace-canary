@@ -3,6 +3,7 @@ import { extensionEnabled } from "./utils";
 
 customElements.whenDefined("hui-glance-card").then(() => {
   const GlanceCard = customElements.get("hui-glance-card");
+  const firstUpdated = GlanceCard.prototype.firstUpdated;
 
   const getAlignment = function(alignment) {
     switch (alignment) {
@@ -16,6 +17,7 @@ customElements.whenDefined("hui-glance-card").then(() => {
   };
 
   GlanceCard.prototype.firstUpdated = function() {
+    firstUpdated.call(this);
     if (this._config.align && extensionEnabled(this._config, "align")) {
       this.shadowRoot.querySelector(
         ".entities"

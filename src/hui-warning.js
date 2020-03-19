@@ -3,8 +3,10 @@ import { extensionEnabled, findConfig } from "./utils";
 
 customElements.whenDefined("hui-warning").then(() => {
   const WarningCard = customElements.get("hui-warning");
+  const firstUpdated = WarningCard.prototype.firstUpdated;
 
   WarningCard.prototype.firstUpdated = function() {
+    firstUpdated.call(this);
     const config = findConfig(this);
     if (
       config &&
