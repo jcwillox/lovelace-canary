@@ -84,4 +84,3 @@ class CanaryCard extends LitElement {
 }
 
 customElements.define("canary-card", CanaryCard);
-registerCard("canary-card", "Canary");
