@@ -1,4 +1,4 @@
-import { VERTICAL_STACK_IN_CARD_STYLE } from "../const";
+import { NO_CARD_STYLE, VERTICAL_STACK_IN_CARD_STYLE } from "../const";
 import { extensionEnabled, moduleEnabled } from "../utils";
 import { createModule } from "../module";
 
@@ -13,8 +13,10 @@ if (moduleEnabled(MODULE)) {
     await element.updateComplete;
 
     if (element.tagName === "HA-CARD") {
-      element.style.boxShadow = "none";
-      element.style.background = "none";
+      element.style.transition = "none";
+      Object.assign(element.style, NO_CARD_STYLE);
+      element.offsetHeight;
+      element.style.transition = "";
     }
 
     // depth search.
@@ -35,20 +37,13 @@ if (moduleEnabled(MODULE)) {
       this._config.in_card === true &&
       extensionEnabled(this._config, "in_card")
     ) {
-      // remove space between cards in the stack.
+      // remove space between cards in the stack add ha-card background.
       let styleElement = document.createElement("style");
       styleElement.innerHTML = VERTICAL_STACK_IN_CARD_STYLE;
-
-      // move the stack inside a ha-card element.
-      let haCard = document.createElement("ha-card");
-
       this.shadowRoot.appendChild(styleElement);
-      this.shadowRoot.appendChild(haCard);
-
-      let divElement = this.shadowRoot.querySelector("#root");
-      haCard.insertBefore(divElement, null);
 
       // remove style from all ha-card child elements.
+      let divElement = this.shadowRoot.querySelector("#root");
       applyStyles(divElement);
     }
   });
