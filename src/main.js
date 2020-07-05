@@ -37,8 +37,8 @@ class CanaryCard extends LitElement {
   }
 
   setConfig(config) {
-    this._config = config;
-    this._card = createCard(config.card);
+    this._config = JSON.parse(JSON.stringify(config));
+    this._card = createCard(this._config.card);
     this._hass = this._card.hass = hass();
   }
 
