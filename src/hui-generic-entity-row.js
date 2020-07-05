@@ -1,17 +1,15 @@
-import { fireEvent } from "card-tools/src/event";
 import { hasOldTemplate } from "card-tools/src/old-templates";
 import { DEFAULT_SECONDARY_INFO } from "./const";
 import { hasTemplate } from "card-tools/src/templates";
 import { provideHass } from "card-tools/src/hass";
-import { extensionEnabled } from "./utils";
+import { extensionEnabled, moduleEnabled } from "./utils";
+import { createModule } from "./module";
 
-customElements.whenDefined("hui-generic-entity-row").then(() => {
-  const EntityRow = customElements.get("hui-generic-entity-row");
+const MODULE = "generic-entity-row";
+const ELEMENT = "hui-generic-entity-row";
 
-  const firstUpdated = EntityRow.prototype.firstUpdated;
-
-  EntityRow.prototype.firstUpdated = function() {
-    firstUpdated.call(this);
+if (moduleEnabled(MODULE)) {
+  createModule(ELEMENT, function () {
     if (
       this.config.secondary_info &&
       extensionEnabled(this.config, "secondary_info")
@@ -29,7 +27,7 @@ customElements.whenDefined("hui-generic-entity-row").then(() => {
           secondaryInfoElement.template = {
             template: this.config.secondary_info,
             variables: { config: this.config, entity: this.config.entity },
-            entity_ids: this.config.entity_ids
+            entity_ids: this.config.entity_ids,
           };
 
           this.shadowRoot.appendChild(secondaryInfoElement);
@@ -44,7 +42,5 @@ customElements.whenDefined("hui-generic-entity-row").then(() => {
         }
       }
     }
-  };
-
-  fireEvent("ll-rebuild", {});
-});
+  });
+}

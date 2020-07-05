@@ -1,12 +1,11 @@
-import { fireEvent } from "card-tools/src/event.js";
-import { extensionEnabled, findConfig } from "./utils";
+import { extensionEnabled, findConfig, moduleEnabled } from "./utils";
+import { createModule } from "./module";
 
-customElements.whenDefined("hui-warning").then(() => {
-  const WarningCard = customElements.get("hui-warning");
-  const firstUpdated = WarningCard.prototype.firstUpdated;
+const MODULE = "warning";
+const ELEMENT = "hui-warning";
 
-  WarningCard.prototype.firstUpdated = function() {
-    firstUpdated.call(this);
+if (moduleEnabled(MODULE)) {
+  createModule(ELEMENT, function () {
     const config = findConfig(this);
     if (
       config &&
@@ -15,7 +14,5 @@ customElements.whenDefined("hui-warning").then(() => {
     ) {
       this.style.display = "none";
     }
-  };
-
-  fireEvent("ll-rebuild", {});
-});
+  });
+}

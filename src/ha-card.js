@@ -1,15 +1,14 @@
-import { fireEvent } from "card-tools/src/event.js";
-import { extensionEnabled, findConfig } from "./utils";
+import { extensionEnabled, findConfig, moduleEnabled } from "./utils";
 import { applyTheme } from "./styles";
 import { NO_CARD_STYLE } from "./const";
 import { hass } from "card-tools/src/hass";
+import { createModule } from "./module";
 
-customElements.whenDefined("ha-card").then(() => {
-  const HaCard = customElements.get("ha-card");
-  const firstUpdated = HaCard.prototype.firstUpdated;
+const MODULE = "ha-card";
+const ELEMENT = "ha-card";
 
-  HaCard.prototype.firstUpdated = function () {
-    firstUpdated.call(this);
+if (moduleEnabled(MODULE)) {
+  createModule(ELEMENT, function () {
     const config = findConfig(this);
     if (!config) return;
 
@@ -32,7 +31,5 @@ customElements.whenDefined("ha-card").then(() => {
     this.offsetHeight;
     // restore transition.
     this.style.transition = "";
-  };
-
-  fireEvent("ll-rebuild", {});
-});
+  });
+}

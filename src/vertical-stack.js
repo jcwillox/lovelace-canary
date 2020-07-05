@@ -1,12 +1,12 @@
-import { fireEvent } from "card-tools/src/event";
 import { VERTICAL_STACK_IN_CARD_STYLE } from "./const";
-import { extensionEnabled } from "./utils";
+import { extensionEnabled, moduleEnabled } from "./utils";
+import { createModule } from "./module";
 
-customElements.whenDefined("hui-vertical-stack-card").then(() => {
-  const VerticalStack = customElements.get("hui-vertical-stack-card");
-  const firstUpdated = VerticalStack.prototype.firstUpdated;
+const MODULE = "vertical-stack";
+const ELEMENT = "hui-vertical-stack-card";
 
-  const applyStyles = async function(element) {
+if (moduleEnabled(MODULE)) {
+  const applyStyles = async function (element) {
     // exit clause.
     if (!element) return;
 
@@ -30,8 +30,7 @@ customElements.whenDefined("hui-vertical-stack-card").then(() => {
     }
   };
 
-  VerticalStack.prototype.firstUpdated = function() {
-    firstUpdated.call(this);
+  createModule(ELEMENT, function () {
     if (
       this._config.in_card === true &&
       extensionEnabled(this._config, "in_card")
@@ -52,7 +51,5 @@ customElements.whenDefined("hui-vertical-stack-card").then(() => {
       // remove style from all ha-card child elements.
       applyStyles(divElement);
     }
-  };
-
-  fireEvent("ll-rebuild", {});
-});
+  });
+}
