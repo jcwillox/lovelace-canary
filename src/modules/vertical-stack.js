@@ -1,6 +1,6 @@
-import { VERTICAL_STACK_IN_CARD_STYLE } from "./const";
-import { extensionEnabled, moduleEnabled } from "./utils";
-import { createModule } from "./module";
+import { VERTICAL_STACK_IN_CARD_STYLE } from "../const";
+import { extensionEnabled, moduleEnabled } from "../utils";
+import { createModule } from "../module";
 
 const MODULE = "vertical-stack";
 const ELEMENT = "hui-vertical-stack-card";

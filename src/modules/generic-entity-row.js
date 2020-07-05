@@ -1,9 +1,9 @@
 import { hasOldTemplate } from "card-tools/src/old-templates";
-import { DEFAULT_SECONDARY_INFO } from "./const";
+import { DEFAULT_SECONDARY_INFO } from "../const";
 import { hasTemplate } from "card-tools/src/templates";
 import { provideHass } from "card-tools/src/hass";
-import { extensionEnabled, moduleEnabled } from "./utils";
-import { createModule } from "./module";
+import { extensionEnabled, moduleEnabled } from "../utils";
+import { createModule } from "../module";
 
 const MODULE = "generic-entity-row";
 const ELEMENT = "hui-generic-entity-row";

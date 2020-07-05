@@ -1,8 +1,8 @@
-import { extensionEnabled, findConfig, moduleEnabled } from "./utils";
-import { applyTheme } from "./styles";
-import { NO_CARD_STYLE } from "./const";
+import { extensionEnabled, findConfig, moduleEnabled } from "../utils";
+import { applyTheme } from "../styles";
+import { NO_CARD_STYLE } from "../const";
 import { hass } from "card-tools/src/hass";
-import { createModule } from "./module";
+import { createModule } from "../module";
 
 const MODULE = "ha-card";
 const ELEMENT = "ha-card";

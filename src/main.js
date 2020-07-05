@@ -7,15 +7,15 @@ import { name, version } from "../package.json";
 // allow dynamic updating of secondary info.
 import "./secondary-info";
 // adds three methods to add secondary info to entity rows.
-import "./hui-generic-entity-row";
+import "./modules/generic-entity-row";
 // adds the no_card option.
-import "./ha-card";
+import "./modules/ha-card";
 // adds the in_card option.
-import "./vertical-stack";
+import "./modules/vertical-stack";
 // adds the align option.
-import "./hui-glance-card";
+import "./modules/glance-card";
 // adds hide warning option.
-import "./hui-warning";
+import "./modules/warning";
 
 logVersion(name, version, "#fdd835", "#212121");
 
