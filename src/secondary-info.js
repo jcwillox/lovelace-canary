@@ -93,8 +93,10 @@ class SecondaryInfo extends HTMLElement {
         ? state.attributes[template.attribute]
         : state.state;
 
-      this._getElement().innerHTML = `${template.prefix ||
-        ""}${state}${template.postfix || ""}`;
+      if (state) {
+        this._getElement().innerHTML = `${template.prefix ||
+          ""}${state}${template.postfix || ""}`;
+      }
     }
   }
 
