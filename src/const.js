@@ -9,3 +9,8 @@ export const VERTICAL_STACK_IN_CARD_STYLE = `
       margin-top: -24px;
     }
 `;
+
+export const NO_CARD_STYLE = {
+  boxShadow: "none",
+  background: "none"
+}
