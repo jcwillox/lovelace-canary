@@ -1,9 +1,10 @@
 import { hasOldTemplate } from "card-tools/src/old-templates";
 import { DEFAULT_SECONDARY_INFO } from "../const";
 import { hasTemplate } from "card-tools/src/templates";
-import { provideHass } from "card-tools/src/hass";
+import { hass, provideHass } from "card-tools/src/hass";
 import { extensionEnabled, moduleEnabled } from "../utils";
 import { createModule } from "../module";
+import { applyTheme } from "../styles";
 
 const MODULE = "generic-entity-row";
 const ELEMENT = "hui-generic-entity-row";
@@ -41,6 +42,20 @@ if (moduleEnabled(MODULE)) {
           }
         }
       }
+    }
+
+    if (
+      this.config.canary_style &&
+      extensionEnabled(this.config, "canary_style")
+    ) {
+      Object.assign(this.style, this.config.canary_style);
+    }
+
+    if (
+      this.config.canary_theme &&
+      extensionEnabled(this.config, "canary_theme")
+    ) {
+      applyTheme(this, hass().themes, this.config.canary_theme);
     }
   });
 }
