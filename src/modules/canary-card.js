@@ -2,6 +2,7 @@ import { html, LitElement } from "card-tools/src/lit-element";
 import { createCard } from "card-tools/src/lovelace-element";
 import { hass } from "card-tools/src/hass";
 import { applyTheme } from "../styles";
+import { computeCardSize } from "../utils";
 
 class CanaryCard extends LitElement {
   static get properties() {
@@ -60,9 +61,7 @@ class CanaryCard extends LitElement {
   }
 
   getCardSize() {
-    return typeof this._card.getCardSize === "function"
-      ? this._card.getCardSize()
-      : 1;
+    return computeCardSize(this._card);
   }
 }
 

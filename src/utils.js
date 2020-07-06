@@ -1,6 +1,6 @@
 import { lovelace } from "card-tools/src/hass";
 
-export const findConfig = function(node) {
+export const findConfig = function (node) {
   if (node.config) return node.config;
   if (node._config) return node._config;
   if (node.host) return findConfig(node.host);
@@ -28,3 +28,15 @@ export function extensionEnabled(config, extension) {
   // check: specific extensions are disabled.
   return !disableConfig.includes(extension);
 }
+
+export const computeCardSize = (card) => {
+  if (typeof card.getCardSize === "function") {
+    return card.getCardSize();
+  }
+  if (customElements.get(card.localName)) {
+    return 1;
+  }
+  return customElements
+    .whenDefined(card.localName)
+    .then(() => computeCardSize(card));
+};
