@@ -4,12 +4,11 @@ export const DEFAULT_SECONDARY_INFO = [
   "last-triggered",
 ];
 
-export const VERTICAL_STACK_IN_CARD_STYLE =
-  `
+export const VERTICAL_STACK_IN_CARD_STYLE = `
     #root > *:not(:first-child) {
       margin-top: -24px;
     }
-` + customElements.get("ha-card").getStyles().cssText;
+`;
 
 export const NO_CARD_STYLE = {
   boxShadow: "none",

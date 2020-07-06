@@ -32,19 +32,25 @@ if (moduleEnabled(MODULE)) {
     }
   };
 
-  createModule(ELEMENT, function () {
-    if (
-      this._config.in_card === true &&
-      extensionEnabled(this._config, "in_card")
-    ) {
-      // remove space between cards in the stack add ha-card background.
-      let styleElement = document.createElement("style");
-      styleElement.innerHTML = VERTICAL_STACK_IN_CARD_STYLE;
-      this.shadowRoot.appendChild(styleElement);
+  // require ha-card to be defined so we can take its style
+  customElements.whenDefined("ha-card").then(() => {
+    const IN_CARD_STYLE =
+      VERTICAL_STACK_IN_CARD_STYLE +
+      customElements.get("ha-card").getStyles().cssText;
+    createModule(ELEMENT, function () {
+      if (
+        this._config.in_card === true &&
+        extensionEnabled(this._config, "in_card")
+      ) {
+        // remove space between cards in the stack add ha-card background.
+        let styleElement = document.createElement("style");
+        styleElement.innerHTML = IN_CARD_STYLE;
+        this.shadowRoot.appendChild(styleElement);
 
-      // remove style from all ha-card child elements.
-      let divElement = this.shadowRoot.querySelector("#root");
-      applyStyles(divElement);
-    }
+        // remove style from all ha-card child elements.
+        let divElement = this.shadowRoot.querySelector("#root");
+        applyStyles(divElement);
+      }
+    });
   });
 }
