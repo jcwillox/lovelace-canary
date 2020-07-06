@@ -1,4 +1,4 @@
-import { html, LitElement } from "card-tools/src/lit-element";
+import { LitElement } from "card-tools/src/lit-element";
 import { createCard } from "card-tools/src/lovelace-element";
 import { hass } from "card-tools/src/hass";
 import { applyTheme } from "../styles";
@@ -13,18 +13,26 @@ class CanaryCard extends LitElement {
   }
 
   render() {
-    return html`
-      ${this._card}
-      <style>
-        ${this._config.style}
-      </style>
-    `;
+    return this._card;
   }
 
   setConfig(config) {
     this._config = JSON.parse(JSON.stringify(config));
     this._card = createCard(this._config.card);
     this._hass = this._card.hass = hass();
+  }
+
+  firstUpdated() {
+    if (typeof this._config.style === "object") {
+      Object.assign(this._card.style, this._config.style);
+    } else {
+      let styleEl = document.createElement("style");
+      styleEl.innerHTML = this._config.style;
+
+      this._card.updateComplete.then(() => {
+        (this._card.shadowRoot || this._card).appendChild(styleEl);
+      });
+    }
   }
 
   set hass(hass) {
