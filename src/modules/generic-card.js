@@ -4,7 +4,7 @@ import { NO_CARD_STYLE } from "../const";
 import { hass } from "card-tools/src/hass";
 import { createModule } from "../module";
 
-const MODULE = "ha-card";
+const MODULE = "generic-card";
 const ELEMENT = "ha-card";
 
 if (moduleEnabled(MODULE)) {
