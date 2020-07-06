@@ -14,9 +14,9 @@ Much like [card-mod] Canary extends the default lovelace cards, so you don't nee
 
 * [Generic Entity Row](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row)
 	* [`secondary_info`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#secondary_info)
-	* [`hide_warnings`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#hide_warnings)
 	* [`canary_style`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#canary_style)
 	* [`canary_theme`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#canary_theme)
+	* [`hide_warning`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#hide_warning)
 * [Generic Card](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card)
 	* [`no_card`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card#no_card)
 	* [`canary_style`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card#canary_style)
