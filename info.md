@@ -16,16 +16,22 @@ Much like [card-mod] Canary extends the default lovelace cards, so you don't nee
 Check out the [documentation] for the configuration options and examples.
 
 Available Extensions:
-  - [Generic Entity Rows](https://github.com/jcwillox/lovelace-canary#generic-entity-rows)
-    - [`secondary_info`](https://github.com/jcwillox/lovelace-canary#secondary_info)
-    - [`hide_warning`](https://github.com/jcwillox/lovelace-canary#hide_warning)
-  - [Vertical Stack Card](https://github.com/jcwillox/lovelace-canary#vertical-stack-card)
-    - [`in_card`](https://github.com/jcwillox/lovelace-canary#in_card)
-  - [Generic Cards](https://github.com/jcwillox/lovelace-canary#generic-cards)
-    - [`no_card`](https://github.com/jcwillox/lovelace-canary#no_card)
-  - [Glance Card](https://github.com/jcwillox/lovelace-canary#glance-card)
-    - [`align`](https://github.com/jcwillox/lovelace-canary#align)
-  - [Canary Card](https://github.com/jcwillox/lovelace-canary#canary-card)
+* [Generic Entity Row](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row)
+	* [`secondary_info`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#secondary_info)
+	* [`hide_warnings`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#hide_warnings)
+	* [`canary_style`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#canary_style)
+	* [`canary_theme`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Entity-Row#canary_theme)
+* [Generic Card](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card)
+	* [`no_card`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card#no_card)
+	* [`canary_style`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card#canary_style)
+	* [`canary_theme`](https://github.com/jcwillox/lovelace-canary/wiki/Generic-Card#canary_theme)
+* [Glance Card](https://github.com/jcwillox/lovelace-canary/wiki/Glance-Card)
+	* [`align`](https://github.com/jcwillox/lovelace-canary/wiki/Glance-Card#align)
+* [Vertical Stack](https://github.com/jcwillox/lovelace-canary/wiki/Vertical-Stack)
+	* [`in_card`](https://github.com/jcwillox/lovelace-canary/wiki/Vertical-Stack#in_card)
+* [Canary Card](https://github.com/jcwillox/lovelace-canary/wiki/Canary-Card)
+	* `style`
+	* `theme`
 
 [card-mod]: https://github.com/thomasloven/lovelace-card-mod
-[documentation]: https://github.com/jcwillox/lovelace-canary
+[documentation]: https://github.com/jcwillox/lovelace-canary/wiki
