@@ -14,8 +14,6 @@ export function coerceObject(data = {}) {
 
 export function applyTheme(element, themes, localTheme) {
   if (localTheme in themes.themes) {
-    for (const [key, value] of Object.entries(themes.themes[localTheme])) {
-      element.style.setProperty("--" + key, value);
-    }
+    element.style.cssText = mapStyle(themes.themes[localTheme], "--");
   }
 }
