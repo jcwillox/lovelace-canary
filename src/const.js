@@ -2,6 +2,9 @@ export const DEFAULT_SECONDARY_INFO = [
   "entity-id",
   "last-changed",
   "last-triggered",
+  "position",
+  "tilt-position",
+  "brightness"
 ];
 
 export const VERTICAL_STACK_IN_CARD_STYLE = `
