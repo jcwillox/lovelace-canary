@@ -14,7 +14,6 @@ if (moduleEnabled(MODULE)) {
 
     // ha-card elements have default transition that we need to temporarily disable.
     this.style.transition = "none";
-    this.style.cssText = "";
 
     if (config.canary_theme && extensionEnabled(config, "canary_theme")) {
       applyTheme(this, hass().themes, config.canary_theme);
@@ -30,6 +29,7 @@ if (moduleEnabled(MODULE)) {
 
     // flush css.
     this.offsetHeight;
+
     // restore transition.
     this.style.transition = "";
   });

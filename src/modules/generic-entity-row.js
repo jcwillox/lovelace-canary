@@ -44,8 +44,6 @@ if (moduleEnabled(MODULE)) {
       }
     }
 
-    this.style.cssText = "";
-
     if (
       this.config.canary_theme &&
       extensionEnabled(this.config, "canary_theme")
