@@ -1,6 +1,6 @@
 # 🐤 Canary
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
 The idea behind Canary is to extend the functionality of Lovelace in a non-drastic way. This is done mainly, by adding extra configuration options (extensions) to pre-existing Lovelace elements.
 
