@@ -1,6 +1,9 @@
 # 🐤 Canary
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
+[![HACS Badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+[![License](https://img.shields.io/github/license/jcwillox/lovelace-canary?style=for-the-badge)](https://github.com/jcwillox/lovelace-canary/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/jcwillox/lovelace-canary?style=for-the-badge)](https://github.com/jcwillox/lovelace-canary/releases)
+[![GZIP Size](https://img.badgesize.io/https:/github.com/jcwillox/lovelace-canary/releases/latest/download/canary.js?style=for-the-badge&compression=gzip)](https://github.com/jcwillox/lovelace-canary/releases)
 
 The idea behind Canary is to extend the functionality of Lovelace in a non-drastic way. This is done mainly, by adding extra configuration options (extensions) to pre-existing Lovelace elements.
 
