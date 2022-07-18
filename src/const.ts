@@ -7,6 +7,7 @@ export const DEFAULT_SECONDARY_INFO = [
   "brightness"
 ];
 
+// language=CSS
 export const VERTICAL_STACK_IN_CARD_STYLE = `
     #root > *:not(:first-child) {
       margin-top: -24px;
@@ -15,5 +16,5 @@ export const VERTICAL_STACK_IN_CARD_STYLE = `
 
 export const NO_CARD_STYLE = {
   boxShadow: "none",
-  background: "none",
+  background: "none"
 };

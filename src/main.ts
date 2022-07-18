@@ -1,4 +1,3 @@
-import { logVersion } from "./logging";
 import { name, version } from "../package.json";
 // allow dynamic updating of secondary info.
 import "./secondary-info";
@@ -13,6 +12,10 @@ import "./modules/glance-card";
 // adds hide warning option.
 import "./modules/warning";
 // adds the canary-card card.
-import "./modules/canary-card"
+import "./modules/canary-card";
 
-logVersion(name, version, "#fdd835", "#212121");
+console.info(
+  `%c ${name.toUpperCase()} %c ${version} `,
+  `color: #212121; background: #fdd835; font-weight: 700;`,
+  `color: #fdd835; background: #212121; font-weight: 700;`
+);

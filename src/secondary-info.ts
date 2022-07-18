@@ -1,8 +1,29 @@
 import { subscribeRenderTemplate } from "card-tools/src/templates.js";
 import { parseOldTemplate } from "card-tools/src/old-templates";
 import { oldExtractEntities } from "./templates";
+import { HomeAssistant } from "custom-card-helpers";
+
+interface SecondaryInfoConfig {
+  template: Record<string, unknown> | string;
+  variables?: {
+    config?: {
+      entity?: string;
+      [key: string]: unknown;
+    };
+    [key: string]: unknown;
+  };
+  entity_ids?: string[];
+}
 
 class SecondaryInfo extends HTMLElement {
+  private _disconnected = true;
+  private _data!: SecondaryInfoConfig;
+  private _hass?: HomeAssistant;
+  private _isJinjaTemplate = false;
+  private _isOldTemplate = false;
+  private _element?: Element;
+  private _unsubRenderTemplate?: Promise<() => Promise<void>>;
+
   disconnectedCallback() {
     this._disconnect();
   }
@@ -19,7 +40,6 @@ class SecondaryInfo extends HTMLElement {
   }
 
   set template(data) {
-    // console.log("Template", data);
     this._data = JSON.parse(JSON.stringify(data));
 
     // ignore entity_ids it's not an array.
@@ -32,31 +52,33 @@ class SecondaryInfo extends HTMLElement {
       !this._isJinjaTemplate && typeof this._data.template !== "object";
 
     if (!this._isJinjaTemplate) {
-      if (this._isOldTemplate) {
+      if (typeof this._data.template === "string") {
         if (!this._data.entity_ids) {
           this._data.entity_ids = oldExtractEntities(
-            this._data.template,
-            this._data.variables.config
+            this._data.template as string,
+            this._data.variables?.config
           );
         }
       } else {
         // configure the monitored entity_id for secondary info object type.
-        this._data.entity_ids = [
-          this._data.template.entity || this._data.variables.config.entity
-        ];
+        const entity =
+          (this._data.template.entity as string) ||
+          this._data.variables?.config?.entity;
+        if (entity) {
+          this._data.entity_ids = [entity];
+        }
       }
     }
   }
 
   update() {
     this._disconnect().then(() => this._connect());
-    // console.log("Update", this._data.template)
   }
 
   _getElement() {
     // ensure secondary info div exists.
     if (!this._element) {
-      let element = this.parentNode.querySelector(".secondary");
+      const element = this.parentNode?.querySelector(".secondary");
       if (element) {
         this._element = element;
         this._element.innerHTML = "Loading...";
@@ -75,27 +97,32 @@ class SecondaryInfo extends HTMLElement {
   }
 
   _updateNonJinjaTemplates(hass) {
-    if (!hass) return;
+    if (!hass || !this._getElement()) {
+      return;
+    }
 
     if (this._isOldTemplate) {
-      this._getElement().innerHTML = parseOldTemplate(
+      this._element!.innerHTML = parseOldTemplate(
         this._data.template,
-        this._data.variables.config
+        this._data.variables?.config
       );
-      // console.log(this._data.template);
-    } else {
-      let template = this._data.template;
-      let entity = this._data.entity_ids[0]; // exactly one can be configured for this type.
-      // console.log(template);
+    } else if (typeof this._data.template !== "string") {
+      const template = this._data.template;
+      const entity = this._data.entity_ids?.[0]; // exactly one can be configured for this type.
+
+      if (!entity) {
+        return;
+      }
 
       let state = hass.states[entity];
       state = template.attribute
-        ? state.attributes[template.attribute]
+        ? state.attributes[template.attribute as string]
         : state.state;
 
       if (state) {
-        this._getElement().innerHTML = `${template.prefix ||
-          ""}${state}${template.postfix || ""}`;
+        this._element!.innerHTML = `${template.prefix || ""}${state}${
+          template.postfix || ""
+        }`;
       }
     }
   }
@@ -103,7 +130,7 @@ class SecondaryInfo extends HTMLElement {
   _shouldUpdate(newHass, entities) {
     if (!this._hass || !entities) return true;
     return entities.some(
-      entity => newHass.states[entity] !== this._hass.states[entity]
+      entity => newHass.states[entity] !== this._hass!.states[entity]
     );
   }
 
@@ -114,20 +141,23 @@ class SecondaryInfo extends HTMLElement {
 
     if (this._unsubRenderTemplate) return;
 
-    // show loading message if this if the first connection.
-    this._getElement();
+    if (!this._getElement()) return;
 
+    // show loading message if this is the first connection.
     this._unsubRenderTemplate = subscribeRenderTemplate(
       null,
       result => {
-        this._getElement().innerHTML = result;
-        // console.log(this._data.template);
+        this._element!.innerHTML = result;
       },
       this._data
     );
 
-    await this._unsubRenderTemplate.catch(() => {
-      this._getElement().innerHTML = this._data.template;
+    await this._unsubRenderTemplate?.catch(() => {
+      if (typeof this._data.template === "string") {
+        this._element!.innerHTML = this._data.template;
+      } else {
+        this._element!.innerHTML = JSON.stringify(this._data.template);
+      }
       this._unsubRenderTemplate = undefined;
     });
   }
@@ -141,6 +171,7 @@ class SecondaryInfo extends HTMLElement {
         this._unsubRenderTemplate = undefined;
         await unsub();
       } catch (e) {
+        // @ts-ignore
         if (e.code !== "not_found") throw e;
       }
     }

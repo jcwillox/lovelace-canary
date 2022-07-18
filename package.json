@@ -13,29 +13,29 @@
   "dependencies": {
     "card-tools": "github:thomasloven/lovelace-card-tools#477f3d4",
     "custom-card-helpers": "^1.9.0",
-    "home-assistant-js-websocket": "^7.0.3",
-    "lit": "^2.2.3"
+    "home-assistant-js-websocket": "^7.1.0",
+    "lit": "^2.2.7"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.2",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^5.23.0",
-    "eslint": "^8.15.0",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.20.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-only-warn": "^1.0.3",
-    "prettier": "^2.6.2",
-    "rollup": "^2.73.0",
+    "prettier": "^2.7.1",
+    "rollup": "^2.77.0",
     "rollup-plugin-bundle-size": "^1.0.3",
     "rollup-plugin-lit-css": "^4.0.0",
     "rollup-plugin-sizes": "^1.0.4",
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.4.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.4"
   },
-  "packageManager": "pnpm@7.1.0",
+  "packageManager": "pnpm@7.5.2",
   "engines": {
     "node": ">=16.x"
   }

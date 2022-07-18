@@ -1,6 +1,12 @@
-import { lovelace } from "card-tools/src/hass";
+import { getLovelace } from "custom-card-helpers";
 
-export const findConfig = function (node) {
+interface NodeWithConfig extends Node {
+  host?: Node;
+  config?: object;
+  _config?: object;
+}
+
+export const findConfig = function (node: NodeWithConfig) {
   if (node.config) return node.config;
   if (node._config) return node._config;
   if (node.host) return findConfig(node.host);
@@ -9,7 +15,7 @@ export const findConfig = function (node) {
   return null;
 };
 
-const lovelaceConfig = lovelace();
+const lovelaceConfig = getLovelace();
 const canaryConfig = lovelaceConfig && lovelaceConfig.config.canary;
 
 export function moduleEnabled(module) {
@@ -20,7 +26,7 @@ export function moduleEnabled(module) {
 }
 
 export function extensionEnabled(config, extension) {
-  let disableConfig = config.disable_canary;
+  const disableConfig = config.disable_canary;
   // check: all extensions are enabled.
   if (!disableConfig) return true;
   // check: all extensions are disabled.
@@ -28,15 +34,3 @@ export function extensionEnabled(config, extension) {
   // check: specific extensions are disabled.
   return !disableConfig.includes(extension);
 }
-
-export const computeCardSize = (card) => {
-  if (typeof card.getCardSize === "function") {
-    return card.getCardSize();
-  }
-  if (customElements.get(card.localName)) {
-    return 1;
-  }
-  return customElements
-    .whenDefined(card.localName)
-    .then(() => computeCardSize(card));
-};

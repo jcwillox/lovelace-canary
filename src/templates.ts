@@ -1,26 +1,29 @@
-export function oldExtractEntities(template, variables = null) {
-  let RE_TEMPLATES = /\[\[\s(.*?)\s\]\]/g;
+export function oldExtractEntities(
+  template: string,
+  variables: Record<string, unknown> = {}
+) {
+  const RE_TEMPLATES = /\[\[\s(.*?)\s]]/g;
 
-  let entity_ids = [];
+  const entity_ids: string[] = [];
 
-  let matches = template.matchAll(RE_TEMPLATES);
+  const matches = template.matchAll(RE_TEMPLATES);
 
   for (const match of matches) {
-    const FUNCTION = /^[a-zA-Z0-9_]+\(.*\)$/;
+    const FUNCTION = /^\w+\(.*\)$/;
     const EXPR = /([^=<>!]+)\s*(?:==|!=|<|>|<=|>=)\s*([^=<>!]+)/;
-    const SPECIAL = /^\{.+\}$/;
-    const CONDITION = /^[a-zA-Z0-9_]+\((.*?),/;
+    const SPECIAL = /^\{.+}$/;
+    const CONDITION = /^\w+\((.*?),/;
 
     if (FUNCTION.test(match[1].trim())) {
-      let conditionMatch = match[1].trim().match(CONDITION)[1];
-      let splitExpression = conditionMatch.match(EXPR);
+      const conditionMatch = match[1].trim().match(CONDITION)?.[1];
+      const splitExpression = conditionMatch?.match(EXPR) || [];
 
       for (let i = 1; i < splitExpression.length; i++) {
-        let parts = splitExpression[i].trim().split(".");
+        const parts = splitExpression[i].trim().split(".");
         if (parts.length > 1) {
           if (SPECIAL.test(parts[0])) {
             if (variables.entity && parts[0].includes("{entity}")) {
-              entity_ids.push(variables.entity);
+              entity_ids.push(variables.entity as string);
             }
           } else {
             entity_ids.push(`${parts[0]}.${parts[1]}`);
@@ -28,11 +31,11 @@ export function oldExtractEntities(template, variables = null) {
         }
       }
     } else {
-      let parts = match[1].trim().split(".");
+      const parts = match[1].trim().split(".");
       if (parts.length > 1) {
         if (SPECIAL.test(parts[0])) {
           if (variables.entity && parts[0] === "{entity}") {
-            entity_ids.push(variables.entity);
+            entity_ids.push(variables.entity as string);
           }
         } else {
           entity_ids.push(`${parts[0]}.${parts[1]}`);

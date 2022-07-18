@@ -4,11 +4,14 @@ import { createModule } from "../module";
 const MODULE = "warning";
 const ELEMENT = "hui-warning";
 
+interface Config {
+  hide_warning?: boolean;
+}
+
 if (moduleEnabled(MODULE)) {
   createModule(ELEMENT, function () {
-    const config = findConfig(this);
+    const config: Config = findConfig(this);
     if (
-      config &&
       config.hide_warning === true &&
       extensionEnabled(config, "hide_warning")
     ) {
