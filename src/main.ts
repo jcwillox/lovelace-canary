@@ -1,4 +1,3 @@
-import { name, version } from "../package.json";
 // allow dynamic updating of secondary info.
 import "./secondary-info";
 // adds three methods to add secondary info to entity rows.
@@ -14,8 +13,13 @@ import "./modules/warning";
 // adds the canary-card card.
 import "./modules/canary-card";
 
-console.info(
-  `%c ${name.toUpperCase()} %c ${version} `,
+console.groupCollapsed(
+  `%c ${__NAME__} %c ${__VERSION__} `,
   `color: #212121; background: #fdd835; font-weight: 700;`,
   `color: #fdd835; background: #212121; font-weight: 700;`
 );
+console.info(`BRANCH   : ${__BRANCH__}`);
+console.info(`COMMIT   : ${__COMMIT__}`);
+console.info(`BUILT AT : ${__BUILD_TIME__}`);
+console.info(__REPO_URL__);
+console.groupEnd();
