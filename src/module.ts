@@ -1,5 +1,4 @@
 import { FirstUpdatedFn } from "./types";
-import { fireEvent } from "custom-card-helpers";
 
 export function createModule<Config = Record<string, unknown>>(
   element: string,
@@ -13,7 +12,5 @@ export function createModule<Config = Record<string, unknown>>(
       oFirstUpdated.call(this, changedProperties);
       firstUpdated.call(this, changedProperties);
     };
-
-    fireEvent(window, "ll-rebuild", {});
   });
 }

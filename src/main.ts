@@ -1,3 +1,6 @@
+import { name } from "../package.json";
+import { fireEvent } from "custom-card-helpers";
+
 // allow dynamic updating of secondary info.
 import "./secondary-info";
 // adds three methods to add secondary info to entity rows.
@@ -11,15 +14,28 @@ import "./modules/glance-card";
 // adds hide warning option.
 import "./modules/warning";
 // adds the canary-card card.
-import "./modules/canary-card";
+import "./canary-card";
 
-console.groupCollapsed(
-  `%c ${__NAME__} %c ${__VERSION__} `,
-  `color: #212121; background: #fdd835; font-weight: 700;`,
-  `color: #fdd835; background: #212121; font-weight: 700;`
-);
-console.info(`BRANCH   : ${__BRANCH__}`);
-console.info(`COMMIT   : ${__COMMIT__}`);
-console.info(`BUILT AT : ${__BUILD_TIME__}`);
-console.info(__REPO_URL__);
-console.groupEnd();
+function getResources() {
+  const scriptElements = document.querySelectorAll("script");
+  const retVal: string[] = [];
+  for (const script of scriptElements) {
+    if (script?.innerText?.trim()?.startsWith("import(")) {
+      const imports = script.innerText.split("\n")?.map(e => e.trim());
+      for (const imp of imports) {
+        retVal.push(imp.replace(/^import\("/, "").replace(/"\);/, ""));
+      }
+    }
+  }
+  return retVal;
+}
+
+const resources = getResources();
+if (resources.some(r => r.endsWith(name + ".js"))) {
+  console.info(`${name} is loaded as a module`);
+} else {
+  fireEvent(window, "ll-rebuild", {});
+  console.info(
+    `You may not be getting optimal performance out of ${name}.\nSee https://github.com/thomasloven/lovelace-card-mod#performance-improvements`
+  );
+}

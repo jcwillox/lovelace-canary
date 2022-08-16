@@ -1,5 +1,5 @@
 import { hass } from "card-tools/src/hass";
-import { customElement, property, state } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { LitElement } from "lit";
 import {
   applyThemesOnElement,
@@ -8,9 +8,8 @@ import {
   HomeAssistant,
   LovelaceCard
 } from "custom-card-helpers";
-import { CanaryCardConfig } from "../types";
+import type { CanaryCardConfig } from "./types";
 
-@customElement("canary-card")
 export class CanaryCard extends LitElement implements LovelaceCard {
   @property({ attribute: false }) public _hass!: HomeAssistant;
   @property() private card!: LitElement & LovelaceCard;
@@ -78,3 +77,22 @@ export class CanaryCard extends LitElement implements LovelaceCard {
     return computeCardSize(this.card);
   }
 }
+
+(async () => {
+  while (customElements.get("home-assistant") === undefined)
+    await new Promise(resolve => window.setTimeout(resolve, 100));
+
+  if (!customElements.get("canary-card")) {
+    customElements.define("canary-card", CanaryCard);
+    console.groupCollapsed(
+      `%c ${__NAME__} %c ${__VERSION__} `,
+      `color: #212121; background: #fdd835; font-weight: 700;`,
+      `color: #fdd835; background: #212121; font-weight: 700;`
+    );
+    console.info(`branch   : ${__BRANCH__}`);
+    console.info(`commit   : ${__COMMIT__}`);
+    console.info(`built at : ${__BUILD_TIME__}`);
+    console.info(__REPO_URL__);
+    console.groupEnd();
+  }
+})();
