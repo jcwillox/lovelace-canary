@@ -16,5 +16,6 @@ export const VERTICAL_STACK_IN_CARD_STYLE = `
 
 export const NO_CARD_STYLE = {
   boxShadow: "none",
-  background: "none"
+  background: "none",
+  border: "none"
 };
