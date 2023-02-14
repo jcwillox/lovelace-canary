@@ -1,10 +1,11 @@
-name: "HACS"
+name: "Validate"
 
 on:
   push:
     branches:
       - "main"
       - "feat**"
+      - "fix**"
     tags-ignore:
       - "**"
   pull_request:
@@ -12,14 +13,14 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  validate:
-    name: "Validate"
+  validate-hacs:
     runs-on: ubuntu-latest
+    name: "HACS"
     steps:
       - name: "Checkout the repository"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: "Validate HACS"
         uses: hacs/action@main
         with:
-          category: "plugin"
+          category: plugin

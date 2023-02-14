@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
       - "feat**"
+      - "fix**"
     tags-ignore:
       - "**"
   pull_request:
@@ -15,19 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout the repository"
-        uses: actions/checkout@v2
-
-      - name: "Extract engines"
-        id: engines
-        run: echo ::set-output name=node::$(jq --raw-output .engines.node ./package.json)
+        uses: actions/checkout@v3
 
       - name: "Setup pnpm"
         uses: pnpm/action-setup@v2
 
       - name: "Setup node"
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ steps.engines.outputs.node }}
+          node-version-file: package.json
           cache: ${{ !env.ACT && 'pnpm' || '' }}
 
       - name: "Install dependencies"
@@ -44,23 +41,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout the repository"
-        uses: actions/checkout@v2
-
-      - name: "Extract engines"
-        id: engines
-        run: echo ::set-output name=node::$(jq --raw-output .engines.node ./package.json)
+        uses: actions/checkout@v3
 
       - name: "Setup pnpm"
         uses: pnpm/action-setup@v2
 
       - name: "Setup node"
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ steps.engines.outputs.node }}
+          node-version-file: package.json
           cache: ${{ !env.ACT && 'pnpm' || '' }}
 
       - name: "Install dependencies"
         run: pnpm install
+
+      - name: "Typecheck"
+        run: pnpm run typecheck
 
       - name: "Run Build"
         run: pnpm run build
