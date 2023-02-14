@@ -1,0 +1,9 @@
+# git-blame supports ignoring specific commits, this allows us to hide formatting
+# commits from git-blame.
+#
+# You can use the ignore list file by running:
+#
+# $ git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# refactor: reformat and sort imports
+af2de2cc10091134fd68866eff97e70b387db4f6
