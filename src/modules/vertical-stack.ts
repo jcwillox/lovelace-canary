@@ -49,7 +49,7 @@ if (moduleEnabled(MODULE)) {
   customElements.whenDefined("ha-card").then(() => {
     const IN_CARD_STYLE =
       VERTICAL_STACK_IN_CARD_STYLE +
-      (customElements.get("ha-card") as CardWithStyles).styles!.cssText;
+      (customElements.get("ha-card") as CardWithStyles).styles?.cssText;
 
     createModule<Config>(ELEMENT, function () {
       if (

@@ -102,10 +102,11 @@ class SecondaryInfo extends HTMLElement {
     }
 
     if (this._isOldTemplate) {
-      this._element!.innerHTML = parseOldTemplate(
-        this._data.template,
-        this._data.variables?.config
-      );
+      if (this._element)
+        this._element.innerHTML = parseOldTemplate(
+          this._data.template,
+          this._data.variables?.config
+        );
     } else if (typeof this._data.template !== "string") {
       const template = this._data.template;
       const entity = this._data.entity_ids?.[0]; // exactly one can be configured for this type.
@@ -119,8 +120,8 @@ class SecondaryInfo extends HTMLElement {
         ? state.attributes[template.attribute as string]
         : state.state;
 
-      if (state) {
-        this._element!.innerHTML = `${template.prefix || ""}${state}${
+      if (state && this._element) {
+        this._element.innerHTML = `${template.prefix || ""}${state}${
           template.postfix || ""
         }`;
       }
@@ -130,7 +131,7 @@ class SecondaryInfo extends HTMLElement {
   _shouldUpdate(newHass, entities) {
     if (!this._hass || !entities) return true;
     return entities.some(
-      entity => newHass.states[entity] !== this._hass!.states[entity]
+      entity => newHass.states[entity] !== this._hass?.states[entity]
     );
   }
 
@@ -147,17 +148,18 @@ class SecondaryInfo extends HTMLElement {
     this._unsubRenderTemplate = subscribeRenderTemplate(
       null,
       result => {
-        this._element!.innerHTML = result;
+        this._element && (this._element.innerHTML = result);
       },
       this._data
     );
 
     await this._unsubRenderTemplate?.catch(() => {
-      if (typeof this._data.template === "string") {
-        this._element!.innerHTML = this._data.template;
-      } else {
-        this._element!.innerHTML = JSON.stringify(this._data.template);
-      }
+      if (this._element)
+        if (typeof this._data.template === "string") {
+          this._element.innerHTML = this._data.template;
+        } else {
+          this._element.innerHTML = JSON.stringify(this._data.template);
+        }
       this._unsubRenderTemplate = undefined;
     });
   }
@@ -171,8 +173,7 @@ class SecondaryInfo extends HTMLElement {
         this._unsubRenderTemplate = undefined;
         await unsub();
       } catch (e) {
-        // @ts-ignore
-        if (e.code !== "not_found") throw e;
+        if (typeof e === "object" && e?.["code"] !== "not_found") throw e;
       }
     }
   }

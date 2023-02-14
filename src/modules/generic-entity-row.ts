@@ -19,6 +19,16 @@ interface Config {
   canary_style?: string | StyleInfo;
 }
 
+interface SecondaryInfoElement extends HTMLElement {
+  template?: Record<string, unknown>;
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "secondary-info": SecondaryInfoElement;
+  }
+}
+
 if (moduleEnabled(MODULE)) {
   createModule<Config>(ELEMENT, function () {
     if (
@@ -35,11 +45,10 @@ if (moduleEnabled(MODULE)) {
           // create secondary info element to track state changes.
           const secondaryInfoElement = document.createElement("secondary-info");
 
-          // @ts-ignore
           secondaryInfoElement.template = {
             template: this.config.secondary_info,
             variables: { config: this.config, entity: this.config.entity },
-            entity_ids: this.config.entity_ids
+            entity_ids: this.config.entity_ids,
           };
 
           this.shadowRoot?.appendChild(secondaryInfoElement);
