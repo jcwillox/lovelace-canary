@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "card-tools": "github:thomasloven/lovelace-card-tools#477f3d4",
-    "custom-card-helpers": "^1.9.0",
-    "home-assistant-js-websocket": "^7.1.0",
-    "lit": "^2.2.7"
+    "custom-card-helpers": "1.9.0",
+    "home-assistant-js-websocket": "8.0.1",
+    "lit": "2.6.1"
   },
   "devDependencies": {
     "@types/node": "18.13.0",
@@ -37,7 +37,7 @@
     "husky": "8.0.3",
     "lint-staged": "13.1.2",
     "prettier": "2.8.4",
-    "typescript": "^4.7.4",
+    "typescript": "4.9.5",
     "vite": "4.1.1"
   },
   "packageManager": "pnpm@7.27.0",
