@@ -1,12 +1,12 @@
-import { hasOldTemplate } from "card-tools/src/old-templates";
-import { DEFAULT_SECONDARY_INFO } from "../const";
-import { hasTemplate } from "card-tools/src/templates";
 import { hass, provideHass } from "card-tools/src/hass";
-import { extensionEnabled, moduleEnabled } from "../utils";
-import { createModule } from "../module";
-import { mapStyle } from "../styles";
+import { hasOldTemplate } from "card-tools/src/old-templates";
+import { hasTemplate } from "card-tools/src/templates";
 import { applyThemesOnElement } from "custom-card-helpers";
 import { StyleInfo } from "lit/directives/style-map.js";
+import { DEFAULT_SECONDARY_INFO } from "../const";
+import { createModule } from "../module";
+import { mapStyle } from "../styles";
+import { extensionEnabled, moduleEnabled } from "../utils";
 
 const MODULE = "generic-entity-row";
 const ELEMENT = "hui-generic-entity-row";

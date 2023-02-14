@@ -1,13 +1,13 @@
 import { hass } from "card-tools/src/hass";
-import { property, state } from "lit/decorators.js";
-import { LitElement } from "lit";
 import {
+  HomeAssistant,
+  LovelaceCard,
   applyThemesOnElement,
   computeCardSize,
   createThing,
-  HomeAssistant,
-  LovelaceCard
 } from "custom-card-helpers";
+import { LitElement } from "lit";
+import { property, state } from "lit/decorators.js";
 import type { CanaryCardConfig } from "./types";
 
 export class CanaryCard extends LitElement implements LovelaceCard {

@@ -1,5 +1,5 @@
-import { name } from "../package.json";
 import { fireEvent } from "custom-card-helpers";
+import { name } from "../package.json";
 
 // allow dynamic updating of secondary info.
 import "./secondary-info";

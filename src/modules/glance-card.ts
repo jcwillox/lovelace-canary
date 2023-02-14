@@ -1,5 +1,5 @@
-import { extensionEnabled, moduleEnabled } from "../utils";
 import { createModule } from "../module";
+import { extensionEnabled, moduleEnabled } from "../utils";
 
 const MODULE = "glance-card";
 const ELEMENT = "hui-glance-card";

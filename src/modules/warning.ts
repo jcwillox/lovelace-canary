@@ -1,5 +1,5 @@
-import { extensionEnabled, findConfig, moduleEnabled } from "../utils";
 import { createModule } from "../module";
+import { extensionEnabled, findConfig, moduleEnabled } from "../utils";
 
 const MODULE = "warning";
 const ELEMENT = "hui-warning";

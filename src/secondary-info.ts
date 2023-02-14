@@ -1,7 +1,7 @@
-import { subscribeRenderTemplate } from "card-tools/src/templates.js";
 import { parseOldTemplate } from "card-tools/src/old-templates";
-import { oldExtractEntities } from "./templates";
+import { subscribeRenderTemplate } from "card-tools/src/templates.js";
 import { HomeAssistant } from "custom-card-helpers";
+import { oldExtractEntities } from "./templates";
 
 interface SecondaryInfoConfig {
   template: Record<string, unknown> | string;

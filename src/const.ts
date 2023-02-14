@@ -4,7 +4,7 @@ export const DEFAULT_SECONDARY_INFO = [
   "last-triggered",
   "position",
   "tilt-position",
-  "brightness"
+  "brightness",
 ];
 
 // language=CSS
@@ -17,5 +17,5 @@ export const VERTICAL_STACK_IN_CARD_STYLE = `
 export const NO_CARD_STYLE = {
   boxShadow: "none",
   background: "none",
-  border: "none"
+  border: "none",
 };

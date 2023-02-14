@@ -1,10 +1,10 @@
-import { extensionEnabled, findConfig, moduleEnabled } from "../utils";
-import { mapStyle } from "../styles";
-import { NO_CARD_STYLE } from "../const";
 import { hass } from "card-tools/src/hass";
-import { createModule } from "../module";
 import { applyThemesOnElement } from "custom-card-helpers";
 import { StyleInfo } from "lit/directives/style-map.js";
+import { NO_CARD_STYLE } from "../const";
+import { createModule } from "../module";
+import { mapStyle } from "../styles";
+import { extensionEnabled, findConfig, moduleEnabled } from "../utils";
 
 const MODULE = "generic-card";
 const ELEMENT = "ha-card";

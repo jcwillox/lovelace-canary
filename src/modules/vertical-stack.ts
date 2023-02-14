@@ -1,7 +1,7 @@
-import { NO_CARD_STYLE, VERTICAL_STACK_IN_CARD_STYLE } from "../const";
-import { extensionEnabled, moduleEnabled } from "../utils";
-import { createModule } from "../module";
 import { LovelaceCard } from "custom-card-helpers";
+import { NO_CARD_STYLE, VERTICAL_STACK_IN_CARD_STYLE } from "../const";
+import { createModule } from "../module";
+import { extensionEnabled, moduleEnabled } from "../utils";
 
 const MODULE = "vertical-stack";
 const ELEMENT = "hui-vertical-stack-card";

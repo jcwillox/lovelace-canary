@@ -1,6 +1,6 @@
 import { HomeAssistant, LovelaceCard } from "custom-card-helpers";
-import { LitElement, PropertyValues } from "lit";
 import { LovelaceCardConfig } from "custom-card-helpers/src/types";
+import { LitElement, PropertyValues } from "lit";
 import { StyleInfo } from "lit/directives/style-map.js";
 
 declare global {
