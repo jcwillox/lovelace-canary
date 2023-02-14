@@ -3,8 +3,11 @@
   "version": "0-dev",
   "author": "Joshua Cowie-Willox",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "build": "rollup -c",
+    "build": "vite build",
+    "build:tsc": "tsc && vite build",
+    "typecheck": "tsc",
     "lint": "eslint --max-warnings=0 src/",
     "lint:fix": "npm run lint -s -- --fix",
     "format": "prettier src/ --write",
@@ -17,26 +20,17 @@
     "lit": "^2.2.7"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-replace": "^4.0.0",
-    "@rollup/plugin-typescript": "^8.3.3",
+    "@types/node": "18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "eslint": "^8.20.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-only-warn": "^1.0.3",
     "prettier": "^2.7.1",
-    "rollup": "^2.77.0",
-    "rollup-plugin-bundle-size": "^1.0.3",
-    "rollup-plugin-lit-css": "^4.0.0",
-    "rollup-plugin-sizes": "^1.0.4",
-    "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite": "4.1.1"
   },
-  "packageManager": "pnpm@7.5.2",
+  "packageManager": "pnpm@7.27.0",
   "engines": {
     "node": ">=16.x"
   }
