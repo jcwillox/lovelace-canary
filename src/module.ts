@@ -2,7 +2,7 @@ import { FirstUpdatedFn } from "./types";
 
 export function createModule<Config = Record<string, unknown>>(
   element: string,
-  firstUpdated: FirstUpdatedFn<Config>
+  firstUpdated: FirstUpdatedFn<Config>,
 ) {
   customElements.whenDefined(element).then(() => {
     const el = customElements.get(element) as CustomElementConstructor;

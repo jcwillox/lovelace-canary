@@ -27,7 +27,7 @@ if (moduleEnabled(MODULE)) {
       applyThemesOnElement(
         this,
         this.hass ? this.hass.themes : hass().themes,
-        config.canary_theme
+        config.canary_theme,
       );
     }
 

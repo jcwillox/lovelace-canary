@@ -1,6 +1,6 @@
 export function oldExtractEntities(
   template: string,
-  variables: Record<string, unknown> = {}
+  variables: Record<string, unknown> = {},
 ) {
   const RE_TEMPLATES = /\[\[\s(.*?)\s]]/g;
 

@@ -56,7 +56,7 @@ class SecondaryInfo extends HTMLElement {
         if (!this._data.entity_ids) {
           this._data.entity_ids = oldExtractEntities(
             this._data.template as string,
-            this._data.variables?.config
+            this._data.variables?.config,
           );
         }
       } else {
@@ -105,7 +105,7 @@ class SecondaryInfo extends HTMLElement {
       if (this._element)
         this._element.innerHTML = parseOldTemplate(
           this._data.template,
-          this._data.variables?.config
+          this._data.variables?.config,
         );
     } else if (typeof this._data.template !== "string") {
       const template = this._data.template;
@@ -131,7 +131,7 @@ class SecondaryInfo extends HTMLElement {
   _shouldUpdate(newHass, entities) {
     if (!this._hass || !entities) return true;
     return entities.some(
-      entity => newHass.states[entity] !== this._hass?.states[entity]
+      entity => newHass.states[entity] !== this._hass?.states[entity],
     );
   }
 
@@ -150,7 +150,7 @@ class SecondaryInfo extends HTMLElement {
       result => {
         this._element && (this._element.innerHTML = result);
       },
-      this._data
+      this._data,
     );
 
     await this._unsubRenderTemplate?.catch(() => {

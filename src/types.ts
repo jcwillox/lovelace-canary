@@ -31,5 +31,5 @@ export interface LovelaceElement<Config = Record<string, unknown>>
 
 export type FirstUpdatedFn<Config> = (
   this: LovelaceElement<Config>,
-  changedProperties: PropertyValues
+  changedProperties: PropertyValues,
 ) => void;

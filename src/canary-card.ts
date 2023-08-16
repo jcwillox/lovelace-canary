@@ -87,7 +87,7 @@ export class CanaryCard extends LitElement implements LovelaceCard {
     console.groupCollapsed(
       `%c ${__NAME__} %c ${__VERSION__} `,
       "color: #212121; background: #fdd835; font-weight: 700;",
-      "color: #fdd835; background: #212121; font-weight: 700;"
+      "color: #fdd835; background: #212121; font-weight: 700;",
     );
     console.info(`branch   : ${__BRANCH__}`);
     console.info(`commit   : ${__COMMIT__}`);

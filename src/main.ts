@@ -36,6 +36,6 @@ if (resources.some(r => r.endsWith(name + ".js"))) {
 } else {
   fireEvent(window, "ll-rebuild", {});
   console.info(
-    `You may not be getting optimal performance out of ${name}.\nSee https://github.com/thomasloven/lovelace-card-mod#performance-improvements`
+    `You may not be getting optimal performance out of ${name}.\nSee https://github.com/thomasloven/lovelace-card-mod#performance-improvements`,
   );
 }
