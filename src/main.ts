@@ -21,7 +21,7 @@ function getResources() {
   const retVal: string[] = [];
   for (const script of scriptElements) {
     if (script?.innerText?.trim()?.startsWith("import(")) {
-      const imports = script.innerText.split("\n")?.map(e => e.trim());
+      const imports = script.innerText.split("\n")?.map((e) => e.trim());
       for (const imp of imports) {
         retVal.push(imp.replace(/^import\("/, "").replace(/"\);/, ""));
       }
@@ -31,7 +31,7 @@ function getResources() {
 }
 
 const resources = getResources();
-if (resources.some(r => r.endsWith(name + ".js"))) {
+if (resources.some((r) => r.endsWith(name + ".js"))) {
   console.info(`${name} is loaded as a module`);
 } else {
   fireEvent(window, "ll-rebuild", {});

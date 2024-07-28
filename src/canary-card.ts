@@ -80,7 +80,7 @@ export class CanaryCard extends LitElement implements LovelaceCard {
 
 (async () => {
   while (customElements.get("home-assistant") === undefined)
-    await new Promise(resolve => window.setTimeout(resolve, 100));
+    await new Promise((resolve) => window.setTimeout(resolve, 100));
 
   if (!customElements.get("canary-card")) {
     customElements.define("canary-card", CanaryCard);

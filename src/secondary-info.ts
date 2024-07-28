@@ -131,7 +131,7 @@ class SecondaryInfo extends HTMLElement {
   _shouldUpdate(newHass, entities) {
     if (!this._hass || !entities) return true;
     return entities.some(
-      entity => newHass.states[entity] !== this._hass?.states[entity],
+      (entity) => newHass.states[entity] !== this._hass?.states[entity],
     );
   }
 
@@ -147,7 +147,7 @@ class SecondaryInfo extends HTMLElement {
     // show loading message if this is the first connection.
     this._unsubRenderTemplate = subscribeRenderTemplate(
       null,
-      result => {
+      (result) => {
         this._element && (this._element.innerHTML = result);
       },
       this._data,
