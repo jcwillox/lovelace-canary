@@ -92,7 +92,7 @@ export class CanaryCard extends LitElement implements LovelaceCard {
     console.info(`branch   : ${__BRANCH__}`);
     console.info(`commit   : ${__COMMIT__}`);
     console.info(`built at : ${__BUILD_TIME__}`);
-    console.info(__REPO_URL__);
+    console.info("https://github.com/jcwillox/lovelace-canary");
     console.groupEnd();
   }
 })();
