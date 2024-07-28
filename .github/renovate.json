@@ -3,6 +3,10 @@
   "extends": ["github>jcwillox/renovate-config", ":automergeMinor"],
   "packageRules": [
     {
+      "matchPackageNames": ["lit"],
+      "allowedVersions": "<3.0.0"
+    },
+    {
       "matchPackageNames": ["eslint"],
       "allowedVersions": "<9.0.0"
     }
