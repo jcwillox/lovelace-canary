@@ -10,3 +10,6 @@ af2de2cc10091134fd68866eff97e70b387db4f6
 
 # refactor: reformat with prettier v3
 782d95e4ddf38fa577f0726b965b47567a94f922
+
+# refactor: use default prettier config
+336fee4c94f4c637842f54a55d772c7f9b62e524
