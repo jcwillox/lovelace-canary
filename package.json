@@ -38,7 +38,7 @@
     "lint-staged": "15.2.7",
     "prettier": "3.3.3",
     "typescript": "5.5.4",
-    "vite": "5.3.4",
+    "vite": "6.2.4",
     "vite-plugin-compression": "0.5.1"
   },
   "packageManager": "pnpm@9.6.0",
