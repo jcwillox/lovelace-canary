@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout the repository"
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6.0.3
 
       - name: "Setup pnpm"
         uses: pnpm/action-setup@v4.0.0
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout the repository"
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6.0.3
 
       - name: "Setup pnpm"
         uses: pnpm/action-setup@v4.0.0
