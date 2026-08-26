@@ -21,27 +21,27 @@
   "dependencies": {
     "card-tools": "github:thomasloven/lovelace-card-tools#477f3d4",
     "custom-card-helpers": "1.9.0",
-    "home-assistant-js-websocket": "9.4.0",
+    "home-assistant-js-websocket": "9.6.0",
     "lit": "2.8.0"
   },
   "devDependencies": {
-    "@types/node": "20.14.12",
-    "@typescript-eslint/eslint-plugin": "7.17.0",
-    "@typescript-eslint/parser": "7.17.0",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-import-resolver-typescript": "3.6.1",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-only-warn": "1.1.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "husky": "9.1.1",
-    "lint-staged": "15.2.7",
-    "prettier": "3.3.3",
-    "typescript": "5.5.4",
+    "@types/node": "20.19.43",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.2",
+    "eslint-import-resolver-typescript": "3.10.1",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-only-warn": "1.2.1",
+    "eslint-plugin-prettier": "5.5.6",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
     "vite": "5.3.4",
     "vite-plugin-compression": "0.5.1"
   },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.15.9",
   "engines": {
     "node": ">=20.x"
   }
