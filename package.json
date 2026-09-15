@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "card-tools": "github:thomasloven/lovelace-card-tools#477f3d4",
-    "custom-card-helpers": "1.9.0",
+    "custom-card-helpers": "2.0.0",
     "home-assistant-js-websocket": "9.4.0",
     "lit": "2.8.0"
   },
