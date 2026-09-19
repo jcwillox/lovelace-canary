@@ -3,6 +3,31 @@ import { subscribeRenderTemplate } from "card-tools/src/templates.js";
 import { HomeAssistant } from "custom-card-helpers";
 import { oldExtractEntities } from "./templates";
 
+const CONTAINER_CLASS = "canary-secondary-info";
+
+export function getSecondaryInfoContainer(root?: ParentNode | null) {
+  const secondary = root?.querySelector(".secondary");
+  if (!root || !secondary) return undefined;
+
+  let container = secondary.querySelector<HTMLElement>(
+    `:scope > .${CONTAINER_CLASS}`,
+  );
+  if (!container) {
+    container = document.createElement("span");
+    container.className = CONTAINER_CLASS;
+    secondary.prepend(container);
+  }
+
+  if (!root.querySelector(`style.${CONTAINER_CLASS}`)) {
+    const style = document.createElement("style");
+    style.className = CONTAINER_CLASS;
+    style.textContent = `.secondary > :not(.${CONTAINER_CLASS}) { display: none; }`;
+    root.appendChild(style);
+  }
+
+  return container;
+}
+
 interface SecondaryInfoConfig {
   template: Record<string, unknown> | string;
   variables?: {
@@ -78,7 +103,7 @@ class SecondaryInfo extends HTMLElement {
   _getElement() {
     // ensure secondary info div exists.
     if (!this._element) {
-      const element = this.parentNode?.querySelector(".secondary");
+      const element = getSecondaryInfoContainer(this.parentNode);
       if (element) {
         this._element = element;
         this._element.innerHTML = "Loading...";

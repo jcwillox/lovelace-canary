@@ -5,6 +5,7 @@ import { applyThemesOnElement } from "custom-card-helpers";
 import { StyleInfo } from "lit/directives/style-map.js";
 import { DEFAULT_SECONDARY_INFO } from "../const";
 import { createModule } from "../module";
+import { getSecondaryInfoContainer } from "../secondary-info";
 import { mapStyle } from "../styles";
 import { LovelaceElement } from "../types";
 import { extensionEnabled, moduleEnabled } from "../utils";
@@ -72,9 +73,9 @@ if (moduleEnabled(MODULE)) {
           provideHass(secondaryInfoElement);
         } else {
           // set the secondary info to plain text.
-          const secondaryInfoDiv = this.shadowRoot?.querySelector(".secondary");
-          if (secondaryInfoDiv) {
-            secondaryInfoDiv.innerHTML = this.config.secondary_info;
+          const container = getSecondaryInfoContainer(this.shadowRoot);
+          if (container) {
+            container.innerHTML = this.config.secondary_info as string;
           }
         }
       }
