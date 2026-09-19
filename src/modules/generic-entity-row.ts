@@ -20,7 +20,12 @@ interface Config {
   canary_style?: string | StyleInfo;
 }
 
-function isNativeSecondaryInfo(row: LovelaceElement<Config>) {
+interface GenericEntityRow extends LovelaceElement<Config> {
+  secondaryText?: string;
+}
+
+function isNativeSecondaryInfo(row: GenericEntityRow) {
+  if (row.secondaryText) return true;
   const secondaryInfo = row.config?.secondary_info;
   if (Array.isArray(secondaryInfo)) return true;
   if (typeof secondaryInfo !== "string") return false;
@@ -47,7 +52,7 @@ if (moduleEnabled(MODULE)) {
       extensionEnabled(this.config, "secondary_info")
     ) {
       // ensure we don't overwrite the default secondary info behaviour.
-      if (!isNativeSecondaryInfo(this)) {
+      if (!isNativeSecondaryInfo(this as GenericEntityRow)) {
         if (
           typeof this.config.secondary_info === "object" ||
           hasOldTemplate(this.config.secondary_info) ||
