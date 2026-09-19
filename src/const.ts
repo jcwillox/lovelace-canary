@@ -6,6 +6,18 @@ export const DEFAULT_SECONDARY_INFO = [
   "position",
   "tilt-position",
   "brightness",
+  "none",
+  "area",
+  "state",
+  "name",
+  "last_changed",
+  "last_updated",
+  "last_triggered",
+  "current_position",
+  "current_tilt_position",
+  "device_name",
+  "area_name",
+  "floor_name",
 ];
 
 // language=CSS

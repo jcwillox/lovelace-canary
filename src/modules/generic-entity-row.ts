@@ -5,7 +5,9 @@ import { applyThemesOnElement } from "custom-card-helpers";
 import { StyleInfo } from "lit/directives/style-map.js";
 import { DEFAULT_SECONDARY_INFO } from "../const";
 import { createModule } from "../module";
+import { getSecondaryInfoContainer } from "../secondary-info";
 import { mapStyle } from "../styles";
+import { LovelaceElement } from "../types";
 import { extensionEnabled, moduleEnabled } from "../utils";
 
 const MODULE = "generic-entity-row";
@@ -14,9 +16,24 @@ const ELEMENT = "hui-generic-entity-row";
 interface Config {
   entity?: string;
   entity_ids?: string[];
-  secondary_info?: string;
+  secondary_info?: string | string[] | Record<string, unknown>;
   canary_theme?: string;
   canary_style?: string | StyleInfo;
+}
+
+interface GenericEntityRow extends LovelaceElement<Config> {
+  secondaryText?: string;
+}
+
+function isNativeSecondaryInfo(row: GenericEntityRow) {
+  if (row.secondaryText) return true;
+  const secondaryInfo = row.config?.secondary_info;
+  if (Array.isArray(secondaryInfo)) return true;
+  if (typeof secondaryInfo !== "string") return false;
+  if (DEFAULT_SECONDARY_INFO.includes(secondaryInfo)) return true;
+  const entity = row.config?.entity;
+  const stateObj = entity && (row.hass ?? hass())?.states[entity];
+  return !!stateObj && secondaryInfo in stateObj.attributes;
 }
 
 interface SecondaryInfoElement extends HTMLElement {
@@ -36,7 +53,7 @@ if (moduleEnabled(MODULE)) {
       extensionEnabled(this.config, "secondary_info")
     ) {
       // ensure we don't overwrite the default secondary info behaviour.
-      if (!DEFAULT_SECONDARY_INFO.includes(this.config.secondary_info)) {
+      if (!isNativeSecondaryInfo(this as GenericEntityRow)) {
         if (
           typeof this.config.secondary_info === "object" ||
           hasOldTemplate(this.config.secondary_info) ||
@@ -56,9 +73,9 @@ if (moduleEnabled(MODULE)) {
           provideHass(secondaryInfoElement);
         } else {
           // set the secondary info to plain text.
-          const secondaryInfoDiv = this.shadowRoot?.querySelector(".secondary");
-          if (secondaryInfoDiv) {
-            secondaryInfoDiv.innerHTML = this.config.secondary_info;
+          const container = getSecondaryInfoContainer(this.shadowRoot);
+          if (container) {
+            container.innerHTML = this.config.secondary_info as string;
           }
         }
       }
